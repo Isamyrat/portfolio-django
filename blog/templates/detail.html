@@ -7,9 +7,10 @@
 <body>
 {% extends 'portfolio/base.html' %}
 {% block content %}
-    <h5>{{ blog.date|date:' F jS Y' | upper }}</h5>
+    <h2 style="text-align: center; ">{{ blog.title }}</h2>
+    <h5 style="text-align: center">{{ blog.date|date:' F jS Y' | upper }}</h5>
+    <br />
     <p>{{ blog.description|safe }}</p>
-    <p>{{ blog.title }}</p>
 {% endblock %}
 </body>
 </html>

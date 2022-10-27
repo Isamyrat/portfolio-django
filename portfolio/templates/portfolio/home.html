@@ -8,29 +8,33 @@
 <body>
 {% extends 'portfolio/base.html' %}
 {% block content %}
-<h1>Welcome to my portfolio</h1>
 
-{% load static %}
+    {% load static %}
 
-<a href="{% url 'blog:all_blogs' %}">Blog</a>
-<br>
+    <img class="rounded mx-auto d-block" height="500" src="{% static 'portfolio/photo_2022-04-02 00.25.41.jpeg' %}"
+         alt="image">
+    <h1 style="text-align: center">Isamyrat Gurbanov</h1>
 
-<a href="{% static 'portfolio/resume.pdf' %}">Resume </a>
-<br>
+    <h5 style="text-align: left">Portfolio</h5>
+    <hr/>
 
 
-<img src="{% static 'portfolio/photo_2022-04-02_00.25.30.jpeg' %}" alt="image" width="240" height="400">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for project in projects %}
+            <div class="col">
+                <div class="card">
+                    <a href="{{ project.url }}" target="_blank"> <img src="{{ project.image.url }}" class="card-img-top"
+                                                                      width="260" height="260"
+                                                                      alt="The image of project" ></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                        </div>
 
-{% for project in projects %}
-
-    <h1>{{ project.title }}</h1>
-    <h2>{{ project.description }}</h2>
-    <img src="{{ project.image.url }} " height="240" width="240" alt="The image of project"/>
-    {% if project.url %}
-        <br/>
-        <a href="{{ project.url }}">Link</a>
-    {% endif %}
-{% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 </body>
 </html>
